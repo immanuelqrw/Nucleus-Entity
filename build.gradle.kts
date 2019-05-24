@@ -1,8 +1,8 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.jetbrains.dokka.gradle.DokkaTask
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 group = "com.immanuelqrw.core"
-version = "0.0.1-pre-alpha"
+version = "0.0.4-pre-alpha"
 
 apply(from = "gradle/constants.gradle.kts")
 

@@ -12,5 +12,5 @@ import java.time.LocalDateTime
 interface Entryable {
     val createdOn: LocalDateTime?
     val modifiedOn: LocalDateTime?
-    val removedOn: LocalDateTime?
+    var removedOn: LocalDateTime?
 }

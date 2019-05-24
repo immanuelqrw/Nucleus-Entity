@@ -8,5 +8,5 @@ import java.util.*
  * @property id Unique identifier for entity
  */
 interface UniqueIdentifiable : Identifiable {
-    val id: UUID?
+    var id: UUID?
 }
