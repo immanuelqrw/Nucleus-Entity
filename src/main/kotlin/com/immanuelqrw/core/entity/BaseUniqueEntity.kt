@@ -2,15 +2,16 @@ package com.immanuelqrw.core.entity
 
 import com.immanuelqrw.core.util.DateTimeFormatter
 import org.hibernate.annotations.CreationTimestamp
+import org.hibernate.annotations.GenericGenerator
+import org.hibernate.annotations.Type
 import org.hibernate.annotations.UpdateTimestamp
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.LastModifiedDate
 import org.springframework.format.annotation.DateTimeFormat
 import java.time.LocalDateTime
-import java.util.*
+import java.util.UUID
 import javax.persistence.Column
 import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.MappedSuperclass
 
@@ -25,8 +26,10 @@ import javax.persistence.MappedSuperclass
 @MappedSuperclass
 abstract class BaseUniqueEntity : UniqueEntityable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "`id`")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    @GeneratedValue(generator = "uuid")
+    @Type(type = "pg-uuid")
+    @Column(name = "`id`", unique = true, updatable = false, nullable = false)
     override var id: UUID? = null
 
     @DateTimeFormat(pattern = DateTimeFormatter.DATE_TIME_PATTERN)
