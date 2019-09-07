@@ -1,5 +1,6 @@
 package com.immanuelqrw.core.entity
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.immanuelqrw.core.util.DateTimeFormatter
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.GenericGenerator
@@ -11,6 +12,7 @@ import org.springframework.format.annotation.DateTimeFormat
 import java.time.LocalDateTime
 import java.util.UUID
 import javax.persistence.Column
+import javax.persistence.EntityNotFoundException
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
 import javax.persistence.MappedSuperclass
@@ -25,12 +27,22 @@ import javax.persistence.MappedSuperclass
  */
 @MappedSuperclass
 abstract class BaseUniqueEntity : UniqueEntityable {
+
+    @JsonIgnore
     @Id
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     @GeneratedValue(generator = "uuid")
     @Type(type = "pg-uuid")
     @Column(name = "`id`", unique = true, updatable = false, nullable = false)
-    override var id: UUID? = null
+    override var _id: UUID? = null
+
+    override val id: UUID
+        get() {
+            if (_id == null) {
+                throw EntityNotFoundException()
+            }
+            return _id as UUID
+        }
 
     @DateTimeFormat(pattern = DateTimeFormatter.DATE_TIME_PATTERN)
     @CreatedDate
@@ -47,4 +59,5 @@ abstract class BaseUniqueEntity : UniqueEntityable {
     @DateTimeFormat(pattern = DateTimeFormatter.DATE_TIME_PATTERN)
     @Column(name = "`removedOn`")
     override var removedOn: LocalDateTime? = null
+
 }

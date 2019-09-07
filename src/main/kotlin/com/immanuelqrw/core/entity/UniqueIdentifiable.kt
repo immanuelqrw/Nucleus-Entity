@@ -1,6 +1,6 @@
 package com.immanuelqrw.core.entity
 
-import java.util.*
+import java.util.UUID
 
 /**
  * Interface specifying required field to be identifiable
@@ -8,5 +8,9 @@ import java.util.*
  * @property id Unique identifier for entity
  */
 interface UniqueIdentifiable : Identifiable {
-    var id: UUID?
+
+    var _id: UUID?
+
+    val id: UUID
+
 }

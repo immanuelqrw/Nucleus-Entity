@@ -6,5 +6,9 @@ package com.immanuelqrw.core.entity
  * @property id Unique identifier for entity
  */
 interface SerialIdentifiable : Identifiable {
-    var id: Long?
+
+    var _id: Long?
+
+    val id: Long
+
 }
