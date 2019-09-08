@@ -1,6 +1,10 @@
 package com.immanuelqrw.core.entity
 
 import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize
+import com.fasterxml.jackson.databind.annotation.JsonSerialize
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer
 import com.immanuelqrw.core.util.DateTimeFormatter
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.GenericGenerator
@@ -44,18 +48,24 @@ abstract class BaseUniqueEntity : UniqueEntityable {
             return _id as UUID
         }
 
+    @JsonSerialize(using = LocalDateTimeSerializer::class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer::class)
     @DateTimeFormat(pattern = DateTimeFormatter.DATE_TIME_PATTERN)
     @CreatedDate
     @CreationTimestamp
     @Column(name = "`createdOn`", updatable = false)
     override var createdOn: LocalDateTime? = null
 
+    @JsonSerialize(using = LocalDateTimeSerializer::class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer::class)
     @DateTimeFormat(pattern = DateTimeFormatter.DATE_TIME_PATTERN)
     @LastModifiedDate
     @UpdateTimestamp
     @Column(name = "`modifiedOn`")
     override var modifiedOn: LocalDateTime? = null
 
+    @JsonSerialize(using = LocalDateTimeSerializer::class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer::class)
     @DateTimeFormat(pattern = DateTimeFormatter.DATE_TIME_PATTERN)
     @Column(name = "`removedOn`")
     override var removedOn: LocalDateTime? = null

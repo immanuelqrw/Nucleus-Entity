@@ -22,7 +22,8 @@ data class Package(
 
 val jacksonPackages: Array<Package> = arrayOf(
     Package("com.fasterxml.jackson.module", "jackson-module-kotlin", jacksonVersion),
-    Package("com.fasterxml.jackson.dataformat", "jackson-dataformat-yaml", jacksonVersion)
+    Package("com.fasterxml.jackson.dataformat", "jackson-dataformat-yaml", jacksonVersion),
+    Package( "com.fasterxml.jackson.datatype", "jackson-datatype-jsr310", jacksonVersion)
 )
 
 val springPackages: Array<Package> = arrayOf(
