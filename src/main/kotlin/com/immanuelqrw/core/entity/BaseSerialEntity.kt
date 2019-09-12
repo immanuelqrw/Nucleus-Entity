@@ -33,7 +33,7 @@ abstract class BaseSerialEntity : SerialEntityable {
     @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "`id`")
+    @Column(name = "id")
     override var _id: Long? = null
 
     override val id: Long
@@ -49,7 +49,7 @@ abstract class BaseSerialEntity : SerialEntityable {
     @DateTimeFormat(pattern = DateTimeFormatter.DATE_TIME_PATTERN)
     @CreatedDate
     @CreationTimestamp
-    @Column(name = "`createdOn`", updatable = false)
+    @Column(name = "createdOn", updatable = false)
     override var createdOn: LocalDateTime? = null
 
     @JsonSerialize(using = LocalDateTimeSerializer::class)
@@ -57,13 +57,13 @@ abstract class BaseSerialEntity : SerialEntityable {
     @DateTimeFormat(pattern = DateTimeFormatter.DATE_TIME_PATTERN)
     @LastModifiedDate
     @UpdateTimestamp
-    @Column(name = "`modifiedOn`")
+    @Column(name = "modifiedOn")
     override var modifiedOn: LocalDateTime? = null
 
     @JsonSerialize(using = LocalDateTimeSerializer::class)
     @JsonDeserialize(using = LocalDateTimeDeserializer::class)
     @DateTimeFormat(pattern = DateTimeFormatter.DATE_TIME_PATTERN)
-    @Column(name = "`removedOn`")
+    @Column(name = "removedOn")
     override var removedOn: LocalDateTime? = null
 
 }

@@ -37,7 +37,7 @@ abstract class BaseUniqueEntity : UniqueEntityable {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     @GeneratedValue(generator = "uuid")
     @Type(type = "pg-uuid")
-    @Column(name = "`id`", unique = true, updatable = false, nullable = false)
+    @Column(name = "id", unique = true, updatable = false, nullable = false)
     override var _id: UUID? = null
 
     override val id: UUID
@@ -53,7 +53,7 @@ abstract class BaseUniqueEntity : UniqueEntityable {
     @DateTimeFormat(pattern = DateTimeFormatter.DATE_TIME_PATTERN)
     @CreatedDate
     @CreationTimestamp
-    @Column(name = "`createdOn`", updatable = false)
+    @Column(name = "createdOn", updatable = false)
     override var createdOn: LocalDateTime? = null
 
     @JsonSerialize(using = LocalDateTimeSerializer::class)
@@ -61,13 +61,13 @@ abstract class BaseUniqueEntity : UniqueEntityable {
     @DateTimeFormat(pattern = DateTimeFormatter.DATE_TIME_PATTERN)
     @LastModifiedDate
     @UpdateTimestamp
-    @Column(name = "`modifiedOn`")
+    @Column(name = "modifiedOn")
     override var modifiedOn: LocalDateTime? = null
 
     @JsonSerialize(using = LocalDateTimeSerializer::class)
     @JsonDeserialize(using = LocalDateTimeDeserializer::class)
     @DateTimeFormat(pattern = DateTimeFormatter.DATE_TIME_PATTERN)
-    @Column(name = "`removedOn`")
+    @Column(name = "removedOn")
     override var removedOn: LocalDateTime? = null
 
 }

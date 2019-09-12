@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val projectGroup = "com.immanuelqrw.core"
 val projectArtifact = "nucleus-entity"
-val projectVersion = "0.0.13-pre-alpha"
+val projectVersion = "0.0.15-pre-alpha"
 
 group = projectGroup
 version = projectVersion
