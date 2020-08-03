@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val projectGroup = "com.immanuelqrw.core"
 val projectArtifact = "nucleus-entity"
-val projectVersion = "0.0.15-pre-alpha"
+val projectVersion = "0.0.1-pre-alpha"
 
 group = projectGroup
 version = projectVersion
@@ -12,10 +12,10 @@ apply(from = "gradle/constants.gradle.kts")
 
 plugins {
     java
-    kotlin("jvm") version "1.3.61"
-    id("org.jetbrains.kotlin.plugin.noarg") version "1.3.61"
-    id("org.jetbrains.kotlin.plugin.allopen") version "1.3.61"
-    id("org.jetbrains.kotlin.plugin.spring") version "1.3.61"
+    kotlin("jvm") version "1.3.72"
+    id("org.jetbrains.kotlin.plugin.noarg") version "1.3.72"
+    id("org.jetbrains.kotlin.plugin.allopen") version "1.3.72"
+    id("org.jetbrains.kotlin.plugin.spring") version "1.3.72"
     id("io.spring.dependency-management") version "1.0.6.RELEASE"
     id("org.sonarqube") version "2.6"
     id("org.jetbrains.dokka") version "0.9.17"
@@ -23,24 +23,14 @@ plugins {
     `maven-publish`
 }
 
-val awsAccessKey: String by project
-val awsSecretKey: String by project
-
 repositories {
     mavenCentral()
     jcenter()
     maven {
-        url = uri("s3://repo.immanuelqrw.com/release")
-        credentials(AwsCredentials::class.java) {
-            accessKey = awsAccessKey
-            secretKey = awsSecretKey
-        }
-    }
-    maven {
-        url = uri("s3://repo.immanuelqrw.com/snapshot")
-        credentials(AwsCredentials::class.java) {
-            accessKey = awsAccessKey
-            secretKey = awsSecretKey
+        url = uri("https://maven.pkg.github.com/immanuelqrw/Nucleus-Util")
+        credentials {
+            username = project.findProperty("gpr.user") as String? ?: repoUsername
+            password = project.findProperty("gpr.key") as String? ?: repoToken
         }
     }
 }
@@ -119,20 +109,21 @@ val sourcesJar by tasks.registering(Jar::class) {
 }
 
 val repoUsername: String by project
-val repoPassword: String by project
+val repoToken: String by project
 
 publishing {
     repositories {
         maven {
-            url = uri("s3://repo.immanuelqrw.com/release/")
-            credentials(AwsCredentials::class.java) {
-                accessKey = awsAccessKey
-                secretKey = awsSecretKey
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/immanuelqrw/Nucleus-Entity")
+            credentials {
+                username = project.findProperty("gpr.user") as String? ?: repoUsername
+                password = project.findProperty("gpr.key") as String? ?: repoToken
             }
         }
     }
     publications {
-        register("mavenJava", MavenPublication::class) {
+        register("gpr", MavenPublication::class) {
             groupId = projectGroup
             artifactId = projectArtifact
             version = projectVersion

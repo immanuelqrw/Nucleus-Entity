@@ -20,3 +20,5 @@ build/
 *.hprof
 
 .DS_Store
+
+gradle.properties
