@@ -39,9 +39,9 @@ val springBootPackages: Array<Package> = arrayOf(
 )
 
 val databasePackages: Array<Package> = arrayOf(
-    Package("org.postgresql", "postgresql", "42.2.5"),
-    Package("org.hibernate", "hibernate-core", "5.3.7.Final"),
-    Package("org.hibernate.validator", "hibernate-validator", "6.0.13.Final")
+    Package("org.postgresql", "postgresql", "42.2.18"),
+    Package("org.hibernate", "hibernate-core", "5.4.27.Final"),
+    Package("org.hibernate.validator", "hibernate-validator", "7.0.0.Final")
 )
 
 val jUnitPackages: Array<Package> = arrayOf(
@@ -49,8 +49,8 @@ val jUnitPackages: Array<Package> = arrayOf(
     Package("org.junit.jupiter", "junit-jupiter-params", junitVersion),
     Package("org.junit.jupiter", "junit-jupiter-engine", junitVersion),
 
-    Package("io.mockk", "mockk", "1.8.13"),
-    Package("org.amshove.kluent", "kluent", "1.49")
+    Package("io.mockk", "mockk", "1.10.5"),
+    Package("org.amshove.kluent", "kluent", "1.61")
 )
 
 val springTestPackages: Array<Package> = arrayOf(
@@ -76,7 +76,7 @@ val packages: Array<Package> = arrayOf(
 )
 
 val testPackages: Array<Package> = arrayOf(
-    Package("org.hibernate", "hibernate-testing", "5.3.7.Final"),
+    Package("org.hibernate", "hibernate-testing", "5.4.27.Final"),
     *jUnitPackages,
     *springTestPackages
 )
